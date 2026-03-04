@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Bricolage Grotesque — Display === */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === Sora — Body === */
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora[wght].woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === Geist Mono — Code / Principals === */
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* ── Light mode (unused, dark-only app) ── */
+    --background: 0.13 0.012 270;
+    --foreground: 0.96 0.008 270;
+    --card: 0.17 0.016 270;
+    --card-foreground: 0.96 0.008 270;
+    --popover: 0.16 0.018 270;
+    --popover-foreground: 0.96 0.008 270;
+    --primary: 0.68 0.22 295;
+    --primary-foreground: 0.98 0.004 270;
+    --secondary: 0.22 0.024 270;
+    --secondary-foreground: 0.88 0.008 270;
+    --muted: 0.19 0.016 270;
+    --muted-foreground: 0.6 0.018 270;
+    --accent: 0.72 0.2 295;
+    --accent-foreground: 0.98 0.004 270;
+    --destructive: 0.65 0.22 25;
+    --destructive-foreground: 0.98 0.004 270;
+    --border: 0.28 0.028 270;
+    --input: 0.24 0.022 270;
+    --ring: 0.68 0.22 295;
+
+    /* Chart tokens */
+    --chart-1: 0.68 0.22 295;
+    --chart-2: 0.7 0.19 330;
+    --chart-3: 0.66 0.18 220;
+    --chart-4: 0.72 0.2 50;
+    --chart-5: 0.64 0.21 160;
+
+    /* Sidebar */
+    --sidebar: 0.16 0.018 270;
+    --sidebar-foreground: 0.96 0.008 270;
+    --sidebar-primary: 0.68 0.22 295;
+    --sidebar-primary-foreground: 0.98 0.004 270;
+    --sidebar-accent: 0.22 0.024 270;
+    --sidebar-accent-foreground: 0.88 0.008 270;
+    --sidebar-border: 0.28 0.028 270;
+    --sidebar-ring: 0.68 0.22 295;
+
+    /* App-specific tokens */
+    --glow-primary: oklch(0.68 0.22 295 / 0.35);
+    --glow-romance: oklch(0.72 0.19 330 / 0.4);
+    --bubble-user: 0.58 0.22 295;
+    --bubble-ai: 0.19 0.018 270;
+  }
+
+  /* Force dark mode throughout */
+  html {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        oklch(0.28 0.09 295 / 0.3),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 40% 30% at 80% 60%,
+        oklch(0.22 0.06 330 / 0.15),
+        transparent
+      );
+    background-attachment: fixed;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--muted-foreground));
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+  .font-body {
+    font-family: "Sora", sans-serif;
+  }
+  .font-mono {
+    font-family: "Geist Mono", monospace;
+  }
+
+  /* Glow helpers */
+  .glow-primary {
+    box-shadow: 0 0 20px var(--glow-primary);
+  }
+  .glow-romance {
+    box-shadow: 0 0 20px var(--glow-romance);
+  }
+
+  /* Glass morphism */
+  .glass {
+    backdrop-filter: blur(12px) saturate(1.4);
+    background: oklch(var(--card) / 0.7);
+    border: 1px solid oklch(var(--border) / 0.5);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      oklch(0.75 0.22 295),
+      oklch(0.72 0.2 330)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Avatar gradient backgrounds */
+  .avatar-gradient-1 {
+    background: linear-gradient(135deg, oklch(0.55 0.22 295), oklch(0.45 0.2 240));
+  }
+  .avatar-gradient-2 {
+    background: linear-gradient(135deg, oklch(0.6 0.2 330), oklch(0.5 0.22 295));
+  }
+  .avatar-gradient-3 {
+    background: linear-gradient(135deg, oklch(0.55 0.18 220), oklch(0.5 0.2 270));
+  }
+  .avatar-gradient-4 {
+    background: linear-gradient(135deg, oklch(0.6 0.19 30), oklch(0.55 0.2 330));
+  }
+  .avatar-gradient-5 {
+    background: linear-gradient(135deg, oklch(0.58 0.2 160), oklch(0.5 0.18 220));
+  }
+  .avatar-gradient-6 {
+    background: linear-gradient(135deg, oklch(0.62 0.22 60), oklch(0.55 0.2 30));
+  }
+  .avatar-gradient-7 {
+    background: linear-gradient(135deg, oklch(0.55 0.22 295), oklch(0.58 0.2 330));
+  }
+  .avatar-gradient-8 {
+    background: linear-gradient(135deg, oklch(0.5 0.2 240), oklch(0.55 0.18 160));
+  }
+}
